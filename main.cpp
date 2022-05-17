@@ -15,7 +15,7 @@ void test()
   i.set_pixel(0, 2, Color{255, 0, 0}, ImageError::Ignore());
   i.set_pixel(0, 3, Color{255, 0, 0}, ImageError::Ignore());
 
-  std::fstream f{"test.bmp", std::ios::binary | std::ios::write};
+  std::fstream f{"test.bmp", std::ios::binary | std::ios::out};
   i.write<BMPFiler>(f);
   f.close();
 }
@@ -50,8 +50,8 @@ void read_input()
 
   std::vector<char> buf{};
 
-  while (std::cin.ok() && !std::cin.eof()) {
-    cin << std::cin;
+  while (std::cin.good() && !std::cin.eof()) {
+    std::cin >> cin;
     read_count++;
     if (cin == '\n') {
       lines++;
@@ -78,7 +78,7 @@ void read_input()
     }
   }
 
-  std::fstream f{"test.bmp", std::ios::binary | std::ios::write};
+  std::fstream f{"test.bmp", std::ios::binary | std::ios::out};
   img.write<BMPFiler>(f);
   f.close();
 }

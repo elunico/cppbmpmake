@@ -4,6 +4,7 @@
 #include "color.h"
 #include <fstream>
 #include <vector>
+#include <string>
 
 typedef enum {
   I_SUCCESS                = 0,
@@ -40,13 +41,12 @@ struct Image {
   void  set_pixel(int x, int y, Color const c, ImageError& error) noexcept;
 
   template <typename Writer>
-  void write(std::fstream& os) const
-  {
+  void write(std::fstream& os) const {
     Writer{*this}.write(os);
   }
 
-private:
   bool valid_coords(int x, int y, ImageError& error) const noexcept;
+  bool valid_coords(int x, int y) const noexcept;
 };
 
 #endif
